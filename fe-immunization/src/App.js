@@ -6,10 +6,11 @@ function App() {
   return (
     <div className="App">
       <h1>Main Page</h1>
-      <p>
-      header
-      
-      </p>
+
+      <h2>Hello!</h2>
+
+   
+
     </div>
   );
 }
