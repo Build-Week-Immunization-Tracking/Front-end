@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Image, Grid, Segment, Message } from 'semantic-ui-react';
+import { Form, Grid, Segment, Message } from 'semantic-ui-react';
 import axios from 'axios'
 
 
