@@ -36,8 +36,8 @@ const UserPage = (props) => {
 
                   <div className='form-input'>
                     <label htmlFor="Vaccine">Vaccine</label>
-                    <input
-                    id="name"
+                    <input id="userInput"
+                    
                     type="text"
                     name="name"
                     onChange={handleChanges}
@@ -47,8 +47,8 @@ const UserPage = (props) => {
                   
                   <div className='form-input'>
                     <label htmlFor="DateGiven">Date Given</label>
-                    <input
-                    id="dateGiven"
+                    <input id="userInput"
+                    
                     type="text"
                     name="date"
                     onChange={handleChanges}
@@ -58,8 +58,8 @@ const UserPage = (props) => {
                   
                   <div className='form-input'>
                     <label htmlFor="DateNextDoseDue">Date Next Dose Due</label>
-                    <input
-                    id="DateNextDoseDuel"
+                    <input id="userInput"
+                    
                     type="text"
                     name="date"
                     onChange={handleChanges}
@@ -67,7 +67,7 @@ const UserPage = (props) => {
                     />
                   </div>
                   
-                  <button type="submit">Add Vaccine</button>
+                  <button id="userButton" type="submit">Add Vaccine</button>
               </form>
             </div>
         </>

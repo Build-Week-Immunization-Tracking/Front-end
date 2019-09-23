@@ -25,21 +25,21 @@ const OfficePage = ({ values, errors, touched, status }) => {
         
         <div className="office-form">
             <Form>
-                <Field 
+                <Field id ="input"
                     type="text"
                     name="patientname"
                     placeholder="Patient Name" />
                     {touched.patientname && errors.patientname && (
                         <p className="error">{errors.patientname}</p>
                     )}
-                <Field
+                <Field id ="input"
                     type="text"
                     name="immunization"
                     placeholder="Immunization" />
                     {touched.immunization && errors.immunization && (
                         <p className="error">{errors.immunization}</p>
                     )}
-                <Field
+                <Field id ="input"
                     type="date"
                     name="DOI"
                     required
@@ -47,19 +47,19 @@ const OfficePage = ({ values, errors, touched, status }) => {
                     />
               <label>
                 <h6>Check below if patient has given permission to share records</h6>
-                <Field
+                <Field id ="input"
                     type="checkbox"
                     name="permission"
                     checked={values.permission}
                 />
-                <Field
+                <Field id ="input"
                     component="textarea"
                     type="text"
                     name="notes"
                     placeholder="Patient Notes"
                 />
               </label>
-              <button>Submit</button>
+              <button id="officeButton">Submit</button>
             </Form>
             {patients.map(patient => (
                 <ul key={patient.id}>
