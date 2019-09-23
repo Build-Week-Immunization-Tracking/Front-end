@@ -1,0 +1,43 @@
+.office-form {
+    /* margin: auto 100px; */
+    background: #D6D3F0;
+    width: 800px;
+    height:600px;
+    display:flex;
+    align-content:center;
+    justify-content:center;
+    position: absolute;
+    /* margin-top:5%;
+    margin-left:25%; */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+    background-color: #008080;
+    outline: none;
+    cursor: pointer;
+    max-width:125px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top:20px;
+}
+
+textarea, input {
+    margin-top:50px;
+    font-size: 1.4rem;
+    border: 1px solid #008080;
+    display:block;
+    width:100%;
+    
+}
+
+input[type=checkbox] {
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -o-transform: scale(2);
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    padding: 10px;
+}
