@@ -30,7 +30,7 @@ const Login = (props) => {
         <div>
             <Grid textAlign='center' verticalAlign='middle' style={{height: "100vh"}}>
                 <Grid.Column>
-                    <h1>Immunization Tracker App</h1>
+                    <h1>Immunization Tracker </h1>
                     <Form onSubmit={loginSubmit}>
                         <Segment>
                             <Form.Input fluid type='text' placeholder='Email' icon='user' iconPosition='left' name='email' value={loginData.email} onChange={changeHandler} required />
