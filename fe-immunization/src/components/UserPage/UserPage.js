@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import './UserPage.css';
+import UserSummaryTable from './UserSummaryTable';
 
 const UserPage = (props) => {
 
@@ -27,34 +28,48 @@ const UserPage = (props) => {
     return (
         <>
             <h1>User Page</h1>
+            <div className = 'user-page'>
 
-            <form onSubmit={submitForm}>
-                <label htmlFor="Vaccine">Vaccine</label>
-                <input
-                id="name"
-                type="text"
-                name="name"
-                onChange={handleChanges}
-                value={vaccine.name}
-                />
-                <label htmlFor="DateGiven">Date Given</label>
-                <input
-                id="dateGiven"
-                type="text"
-                name="date"
-                onChange={handleChanges}
-                value={vaccine.dateGiven}
-                />
-                <label htmlFor="DateNextDoseDue">Date Next Dose Due</label>
-                <input
-                id="DateNextDoseDuel"
-                type="text"
-                name="date"
-                onChange={handleChanges}
-                value={vaccine.dateNextDoseDue}
-                />
-                <button type="submit">Add Vaccine</button>
-            </form>
+              <UserSummaryTable />
+
+              <form className = 'user-form' onSubmit={submitForm}>
+
+                  <div className='form-input'>
+                    <label htmlFor="Vaccine">Vaccine</label>
+                    <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    onChange={handleChanges}
+                    value={vaccine.name}
+                    />
+                  </div>
+                  
+                  <div className='form-input'>
+                    <label htmlFor="DateGiven">Date Given</label>
+                    <input
+                    id="dateGiven"
+                    type="text"
+                    name="date"
+                    onChange={handleChanges}
+                    value={vaccine.dateGiven}
+                    />
+                  </div>
+                  
+                  <div className='form-input'>
+                    <label htmlFor="DateNextDoseDue">Date Next Dose Due</label>
+                    <input
+                    id="DateNextDoseDuel"
+                    type="text"
+                    name="date"
+                    onChange={handleChanges}
+                    value={vaccine.dateNextDoseDue}
+                    />
+                  </div>
+                  
+                  <button type="submit">Add Vaccine</button>
+              </form>
+            </div>
         </>
     )
 }
