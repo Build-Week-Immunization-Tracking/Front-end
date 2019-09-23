@@ -5,7 +5,7 @@ import {Route} from "react-router-dom";
 import Login from "./components/Login"
 import RegisterForm from "./components/RegisterForm";
 import UserPage from "./components/UserPage";
-import OfficePage from "./components/OfficePage";
+import OfficePage from "./components/OfficePage/OfficePage";
 import Patient from "./components/Patient";
 
 
