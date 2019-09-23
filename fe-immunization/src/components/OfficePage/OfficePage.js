@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./OfficePage.css";
-import { withFormik, Form, Field } from "formik";
+import { Formik, withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
+// import DatePicker from "./DatePicker.js";
+// import "./DatePicker.jsx";
+
 
 const OfficePage = ({ values, errors, touched, status }) => {
     const [patients, setPatient] = useState([])
@@ -19,16 +22,31 @@ const OfficePage = ({ values, errors, touched, status }) => {
         .catch(err => console.log(err.response))
     
     return (
+        
         <div className="office-form">
             <Form>
                 <Field 
                     type="text"
-                    name ="patient"
+                    name="patientname"
                     placeholder="Patient Name" />
-                    {touched.patient && errors.patient && (
-                        <p className="error">{errors.patient}</p>
+                    {touched.patientname && errors.patientname && (
+                        <p className="error">{errors.patientname}</p>
                     )}
+                <Field
+                    type="text"
+                    name="immunization"
+                    placeholder="Immunization" />
+                    {touched.immunization && errors.immunization && (
+                        <p className="error">{errors.immunization}</p>
+                    )}
+                <Field
+                    type="date"
+                    name="DOI"
+                    required
+                    placeholder="DOI"
+                    />
               <label>
+                <h6>Check below if patient has given permission to share records</h6>
                 <Field
                     type="checkbox"
                     name="permission"
@@ -43,20 +61,29 @@ const OfficePage = ({ values, errors, touched, status }) => {
               </label>
               <button>Submit</button>
             </Form>
+            {patients.map(patient => (
+                <ul key={patient.id}>
+                    <li>Patient:{patient.patientname}</li>
+                    <li>Immunization:{patient.immunization}</li>
+
+
+                </ul>
+            ))}
         </div>
     );
 };
 const FormikOfficePage = withFormik({
-    mapPropsToValues({ patient, permission, notes }) {
+    mapPropsToValues({ patientname, immunization, permission, notes }) {
         return {
-            patient: patient || "",
+            patientname: patientname || "",
+            immunization: immunization || "",
             permission: permission || false,
             notes: notes || ""
         };
     },
     validationSchema: Yup.object().shape({
-        patient: Yup.string().required("Patient Name Required")
+        patientname: Yup.string().required("Patient Name Required")
     })
-})
+})(OfficePage);
 
-export default OfficePage;
+export default FormikOfficePage;
