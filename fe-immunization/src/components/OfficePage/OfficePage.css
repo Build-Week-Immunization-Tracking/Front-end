@@ -28,7 +28,7 @@ button {
     
 }
 
-textarea, input {
+ #input {
     margin-top:50px;
     font-size: 1.5rem;
     border: 1px solid #008080;
@@ -44,4 +44,8 @@ input[type=checkbox] {
     -webkit-transform: scale(2);
     transform: scale(2);
     padding: 10px;
+}
+
+.log-out {
+    margin-top: 75px;
 }
