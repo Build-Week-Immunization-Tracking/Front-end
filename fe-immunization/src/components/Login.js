@@ -5,8 +5,8 @@ import axios from 'axios'
 
 
 const Login = (props) => {
-    // loginData will store the email and Password input by user and is sent to the backend to verify
-    const[loginData, setLoginData] = useState({ email: '', password: '' })
+    // loginData will store the username and Password input by user and is sent to the backend to verify
+    const[loginData, setLoginData] = useState({ username: '', password: '' })
 
 
 
@@ -19,7 +19,7 @@ const Login = (props) => {
         axios.post()
             .then(res => {
                 localStorage.setItem('token', res.data)
-                props.history.push('/mainpage')
+                props.history.push('/userpage')
                 }
             )
             .catch(err => console.log(err.response))
@@ -33,14 +33,14 @@ const Login = (props) => {
                     <h1>Immunization Tracker </h1>
                     <Form onSubmit={loginSubmit}>
                         <Segment>
-                            <Form.Input fluid type='text' placeholder='Email' icon='user' iconPosition='left' name='email' value={loginData.email} onChange={changeHandler} required />
+                            <Form.Input fluid type='text' placeholder='Username' icon='user' iconPosition='left' name='username' value={loginData.username} onChange={changeHandler} required />
                             <Form.Input fluid type='password' placeholder='Password' icon='lock' iconPosition='left' name='password' value={loginData.password} onChange={changeHandler} required />
 
                             <Form.Button fluid content='Login' size='large' />
                         </Segment>
                     </Form>
                     <Message>
-                        Don't have an account? <Link to='/register'>Sign Up</Link>
+                        Don't have an account? <Link to='/register'>Register</Link>
                     </Message>
                 </Grid.Column>
             </Grid>

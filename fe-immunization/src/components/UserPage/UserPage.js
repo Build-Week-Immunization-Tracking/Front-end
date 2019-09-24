@@ -35,10 +35,12 @@ const UserPage = (props) => {
               <form className = 'user-form' onSubmit={submitForm}>
 
                   <div className='form-input'>
+
                     <label htmlFor="Child">Child</label>
                     <input
                     placeholder='Name'
                     id="name"
+
                     type="text"
                     name="name"
                     onChange={handleChanges}
@@ -48,18 +50,22 @@ const UserPage = (props) => {
                   </div>
                   
                   <div className='form-input'>
+
                     <label htmlFor="Date">Date Of Birth</label>
                     <input
                     id="dateOfBirth"
                     type="date"
                     name=""
+
                     onChange={handleChanges}
                     value={child.dateOfBirth}
                     required
                     />
                   </div>
                   
+
                   <button type="submit">Add Child</button>
+
               </form>
             </div>
         </>

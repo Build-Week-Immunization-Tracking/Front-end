@@ -19,7 +19,9 @@ App {
     justify-content: space-around;
   }
   
+
   .user-form input,
+
   textarea {
     margin-top: 32px;
     padding: 0.5rem;
@@ -31,8 +33,10 @@ App {
   }
   
   
+
   .user-form button {
     /* max-width: 200px; */
+
     margin: 60px 0 0 0 ;
     /* height:20px; */
     padding: auto 2px;
