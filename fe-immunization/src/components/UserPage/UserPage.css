@@ -19,7 +19,7 @@ App {
     justify-content: space-around;
   }
   
-  input,
+  .user-form input,
   textarea {
     margin-top: 32px;
     padding: 0.5rem;
@@ -31,13 +31,13 @@ App {
   }
   
   
-  button {
-    max-width: 150px;
+  .user-form button {
+    /* max-width: 200px; */
     margin: 60px 0 0 0 ;
-    height:38px;
-    padding: auto 20px;
+    /* height:20px; */
+    padding: auto 2px;
     border-style: none;
-    background-color: steelblue;
+    background-color: teal;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 17px;
     font-weight: 500;

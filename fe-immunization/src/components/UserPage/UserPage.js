@@ -7,21 +7,21 @@ const UserPage = (props) => {
 
     console.log(props);
 
-    const [vaccine, setVacccine] = useState({
-      vaccine:'',
-      dateGiven:'',
-      dateNextDoseDue:''
+    const [child, setChild] = useState({
+      child:'',
+      dateOfBirth:''
+     
     });
 
     const handleChanges = event => {
-      setVacccine({ ...vaccine, [event.target.name]: event.target.value });
-      console.log(vaccine);
+      setChild({ ...child, [event.target.name]: event.target.value });
+      console.log(child);
     };
 
     const submitForm = event => {
       event.preventDefault();
-      props.addNewVaccine(vaccine);
-      setVacccine({ vaccine: "", dateGiven: "" , dateNextDoseDue: "" ,});
+      props.addNewChild(child);
+      setChild({ child: "", dateOfBirth: "" ,});
       console.log(event.target.value);
     };
   
@@ -30,44 +30,36 @@ const UserPage = (props) => {
             <h1>User Page</h1>
             <div className = 'user-page'>
 
-              <UserSummaryTable />
+              
 
               <form className = 'user-form' onSubmit={submitForm}>
 
                   <div className='form-input'>
-                    <label htmlFor="Vaccine">Vaccine</label>
+                    <label htmlFor="Child">Child</label>
                     <input
+                    placeholder='Name'
                     id="name"
                     type="text"
                     name="name"
                     onChange={handleChanges}
-                    value={vaccine.name}
+                    value={child.name}
+                    required
                     />
                   </div>
                   
                   <div className='form-input'>
-                    <label htmlFor="DateGiven">Date Given</label>
+                    <label htmlFor="Date">Date Of Birth</label>
                     <input
-                    id="dateGiven"
-                    type="text"
-                    name="date"
+                    id="dateOfBirth"
+                    type="date"
+                    name=""
                     onChange={handleChanges}
-                    value={vaccine.dateGiven}
+                    value={child.dateOfBirth}
+                    required
                     />
                   </div>
                   
-                  <div className='form-input'>
-                    <label htmlFor="DateNextDoseDue">Date Next Dose Due</label>
-                    <input
-                    id="DateNextDoseDuel"
-                    type="text"
-                    name="date"
-                    onChange={handleChanges}
-                    value={vaccine.dateNextDoseDue}
-                    />
-                  </div>
-                  
-                  <button type="submit">Add Vaccine</button>
+                  <button type="submit">Add Child</button>
               </form>
             </div>
         </>
