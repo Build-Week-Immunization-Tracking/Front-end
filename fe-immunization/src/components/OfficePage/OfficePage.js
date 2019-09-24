@@ -22,7 +22,8 @@ const OfficePage = ({ values, errors, touched, status }) => {
         .catch(err => console.log(err.response))
     
     return (
-        
+        <>
+        <h1>Office Page</h1>
         <div className="office-form">
             <Form>
                 <Field 
@@ -44,7 +45,7 @@ const OfficePage = ({ values, errors, touched, status }) => {
                     name="DOI"
                     required
                     placeholder="DOI"
-                    />
+                />
               <label>
                 <h6>Check below if patient has given permission to share records</h6>
                 <Field
@@ -60,16 +61,18 @@ const OfficePage = ({ values, errors, touched, status }) => {
                 />
               </label>
               <button>Submit</button>
+              <button className="log-out">Log Out</button>
             </Form>
             {patients.map(patient => (
                 <ul key={patient.id}>
                     <li>Patient:{patient.patientname}</li>
                     <li>Immunization:{patient.immunization}</li>
-
-
+                    <li>Date:{patient.DOI}</li>
+                    <li>Notes:{patient.notes}</li>
                 </ul>
             ))}
         </div>
+        </>
     );
 };
 const FormikOfficePage = withFormik({
@@ -82,7 +85,8 @@ const FormikOfficePage = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        patientname: Yup.string().required("Patient Name Required")
+        patientname: Yup.string().required("Patient Name Required"),
+        immunization: Yup.string().required("Immunization Required")
     })
 })(OfficePage);
 

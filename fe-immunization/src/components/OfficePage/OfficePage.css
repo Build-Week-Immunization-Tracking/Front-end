@@ -15,22 +15,26 @@
 }
 
 button {
-    background-color: #008080;
+    background-color: steelblue;
     outline: none;
     cursor: pointer;
     max-width:125px;
     font-size: 1.7rem;
     font-weight: 500;
     margin-top:20px;
+    font-family: 'Merriweather', serif;
+    display:flex;
+    align-content:center;
+    
 }
 
 textarea, input {
     margin-top:50px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     border: 1px solid #008080;
     display:block;
     width:100%;
-    
+    font-family: 'Merriweather', serif;
 }
 
 input[type=checkbox] {
