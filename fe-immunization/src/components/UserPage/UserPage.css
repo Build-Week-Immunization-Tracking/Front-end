@@ -47,7 +47,7 @@ App {
     -webkit-appearance: none;
   }
 
-  .user-page{
+  /* .user-page{
       display: flex;
       align-items: center;
       flex-direction: column-reverse;
@@ -61,5 +61,5 @@ App {
   
   *{
       box-sizing: border-box;
-  }
+  } */
   
