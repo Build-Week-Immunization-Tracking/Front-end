@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import "./UserPage.css";
 import {withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 
 
 const UserForm = ({ values, errors, touched, status }) => {
@@ -13,6 +13,17 @@ const UserForm = ({ values, errors, touched, status }) => {
       setChild([...child, status]);
     }
   }, [status]);
+  
+   axiosWithAuth().get("/providers")
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => console.log(err.response))
+
+    const handleChanges = event => {
+      setChild({ ...child, [event.target.name]: event.target.value });
+      console.log(child);
+    };
 
   return (
     <div>
@@ -27,6 +38,7 @@ const UserForm = ({ values, errors, touched, status }) => {
         <h5>Last Name</h5>
         <Field type="text" name="immunization" placeholder="Immunization" />
         {touched.immunization && errors.immunization && <p className="error">{errors.immunization}</p>}
+
 
         <h5>Date Of Birth</h5>
         <Field
