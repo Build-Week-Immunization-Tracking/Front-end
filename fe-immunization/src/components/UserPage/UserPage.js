@@ -19,12 +19,12 @@ const UserForm = ({ values, errors, touched, status }) => {
   <h1>Welcome to Immunization Tracking for Children</h1>
     <div className="user-form"> 
       <Form>
-        <h5>Child Name</h5>
+        <h5>First Name</h5>
         <Field type="text" name="child" placeholder="Child Name" />
         {touched.child && errors.child && (
           <p className="error">{errors.child}</p>
         )}
-        <h5>Immunization</h5>
+        <h5>Last Name</h5>
         <Field type="text" name="immunization" placeholder="Immunization" />
         {touched.immunization && errors.immunization && <p className="error">{errors.immunization}</p>}
 
@@ -51,7 +51,7 @@ const UserForm = ({ values, errors, touched, status }) => {
             
           />
         </label>
-        <button>Add Child!</button>
+        <button>Add Patient!</button>
       </Form>
       {child.map(child => (
         <ul key={child.id}>
