@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Message } from 'semantic-ui-react';
@@ -14,38 +15,69 @@ import {axiosWithAuth} from "./utils/axiosWithAuth";
             e.preventDefault();
             setLogin({username: "", password: ""})
             
-            axiosWithAuth().post("./login", login)
+            axiosWithAuth().post("/login", login)
             .then(res => {
-                localStorage.setItem("token", res.data.payload)
-                props.history.push("/userpage")
+                console.log(res)
+                localStorage.setItem("token", res.data.token)
+                localStorage.setItem("id", res.data.id)
+                if (res.data.isProvider) {
+                    props.history.push("/officepage")
+                } else {
+                props.history.push("/userpage")}
+
             })
             .catch(err => console.log(err))
             setLogin({username: "", password: ""})
         }
 
     return (
-        <div>
-                    <h1>Immunization Tracker </h1>
-                <Form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="username"
-                        value={login.username}
-                        onChange={handleChange}
-                        placeholder="Username"
-                        />
-                    <input
-                        type="text"
-                        name="password"
-                        value={login.password}
-                        onChange={handleChange}
-                        placeholder="Password"
-                        />
-                     <button type="submit">Log in</button>
-                </Form>
-                <Message>
-                    Don't have an account? <Link to='/register'>Register Now</Link>
-                </Message>
+        <div className="container App">
+            <div className="d-flex justify-content-center h-100">
+                <div className="card">
+                    <div className="card-header">
+                        <h1>Immunization Tracker </h1>
+                    </div>
+                    <div className="card-body">
+                        <Form onSubmit={handleSubmit}>
+                            <div className="input-group form-group">   
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text"><i className="fas fa-user"></i></span>
+                                </div>
+                                <input
+                                type="text"
+                                name="username"
+                                value={login.username}
+                                onChange={handleChange}
+                                placeholder="Username"
+                                />
+                            </div>
+                            <div className="input-group form-group"> 
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                                    </div>
+                                    <input
+                                    type="password"
+                                    name="password"
+                                    value={login.password}
+                                    onChange={handleChange}
+                                    placeholder="Password"
+                                    />
+                            </div>
+                                    {/* <button type="submit">Log in</button> */}
+                            <div className="form-group">
+						        <input type="submit" value="Login" className="btn float-right login_btn"/>
+					        </div>
+                        </Form>
+                    </div>
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-center links">
+                        <Message>
+                            Don't have an account? <Link to='/register'>Register Now</Link>
+                        </Message>
+                        </div>
+			        </div>
+                </div>
+            </div>
         </div>
     )
 }

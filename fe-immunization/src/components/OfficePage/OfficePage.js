@@ -3,6 +3,7 @@ import "./OfficePage.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 // import DatePicker from "./DatePicker.js";
 // import "./DatePicker.jsx";
 
@@ -15,7 +16,7 @@ const OfficePage = ({ values, errors, touched, status }) => {
         }
     }, [status]);
 
-    axios.get("")
+    axiosWithAuth().get("/patients")
         .then(response => {
             console.log(response);
         })
