@@ -91,8 +91,7 @@ const FormikUserForm = withFormik({
   }),
   //You can use this to see the values
   handleSubmit(values, { setStatus }) {
-    axios
-      .post("", values)
+    axiosWithAuth().post("/patients", values)
       .then(res => {
         setStatus(res.data);
       })
