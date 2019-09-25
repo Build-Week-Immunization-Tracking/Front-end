@@ -1,6 +1,7 @@
-
 import React, { useState } from "react";
 import './UserPage.css';
+import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const UserPage = (props) => {
 
@@ -11,6 +12,13 @@ const UserPage = (props) => {
       dateOfBirth:''
      
     });
+
+
+    axiosWithAuth().get("/providers")
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => console.log(err.response))
 
     const handleChanges = event => {
       setChild({ ...child, [event.target.name]: event.target.value });
