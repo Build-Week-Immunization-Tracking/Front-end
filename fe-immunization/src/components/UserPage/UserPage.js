@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import './UserPage.css';
-import UserSummaryTable from './UserSummaryTable';
 
 const UserPage = (props) => {
 
