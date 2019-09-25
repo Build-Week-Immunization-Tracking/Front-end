@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Form, Checkbox, Button, Label } from 'semantic-ui-react';
+import { Form, Checkbox, Button } from 'semantic-ui-react';
 import axios from 'axios';
 
 export default function RegisterForm(props) {
     const [userCredentials, setCredentials] = useState({
         username: "",
-        password: ""
+        password: "",
+        email: ""
     });
 
     const submitHandler = event => {
         event.preventDefault();
 
-        axios.post("")
+        axios.post("https://immunization.herokuapp.com/register", userCredentials,  {headers: {"Content-Type": "application/json" }})
             .then(res => {
                 console.log(res);
                 props.history.push("/");
@@ -27,18 +28,11 @@ export default function RegisterForm(props) {
         <div>
             <Form onSubmit={submitHandler}>
                 <h1>Register</h1>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input placeholder='First Name' />
-                </Form.Field>
-                <Form.Field>
-                    <label>Last Name</label>
-                    <input placeholder='Last Name' />
-                </Form.Field>
-                <Form.Field>
-                    <Checkbox label='I agree to the Terms and Conditions' />
-                </Form.Field>
-                <Button type='submit'>Submit</Button>
+                <Form.Input  type="text" placeholder="Username" name="username" onChange={changeHandler} value={userCredentials.username} required />
+                <Form.Input  type="password" placeholder="Password" name="password" onChange={changeHandler} value={userCredentials.password} required />
+                <Form.Input  type="email" placeholder="Email" name="email" onChange={changeHandler} value={userCredentials.email} required />
+                <Checkbox label="Office Staff Register Only"/>
+                <Button  content="Register" size="large" />
             </Form>
         </div>
     )

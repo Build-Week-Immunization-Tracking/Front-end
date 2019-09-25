@@ -7,6 +7,7 @@ import RegisterForm from "./components/RegisterForm";
 import UserPage from "./components/UserPage/UserPage";
 import OfficePage from "./components/OfficePage/OfficePage";
 import Patient from "./components/Patient";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 
@@ -15,9 +16,9 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Login}/>
       <Route exact path="/register" component={RegisterForm}/>
-      <Route exact path="/userpage" component={UserPage}/>
-      <Route exact path="/officepage" component={OfficePage}/>
-      <Route exact path="/patient" component={Patient}/>
+      <PrivateRoute exact path="/userpage" component={UserPage}/>
+      <PrivateRoute exact path="/officepage" component={OfficePage}/>
+      <PrivateRoute exact path="/patient" component={Patient}/>
     </div>
   );
 }
