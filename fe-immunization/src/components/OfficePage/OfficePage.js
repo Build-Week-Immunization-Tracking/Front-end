@@ -18,6 +18,8 @@ const OfficePage = ({ values, errors, touched, status }) => {
     axiosWithAuth().get("/patients")
         .then(response => {
             console.log(response);
+            // const patientArray = response.data.results;
+            // setPatient(patientArray);
         })
         .catch(err => console.log(err.response))
     
@@ -65,14 +67,14 @@ const OfficePage = ({ values, errors, touched, status }) => {
             </Form>
             {patients.map(patient => (
                 <ul key={patient.id}>
-                    <li>Patient:{patient.patientname}</li>
-                    <li>Immunization:{patient.immunization}</li>
-                    <li>Date:{patient.DOI}</li>
-                    <li>Notes:{patient.notes}</li>
+                    <li>Patient:{patients.firstName} + {patients.lastName}</li>
+                    <li>Birthdate:{patients.birthDate}</li>
+                    <li>Date:{patients.DOI}</li>
+                    <li>Notes:{patients.notes}</li>
                 </ul>
             ))}
         </div>
-        </>
+       </> 
     );
 };
 const FormikOfficePage = withFormik({
