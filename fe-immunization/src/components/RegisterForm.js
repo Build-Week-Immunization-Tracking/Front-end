@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Checkbox, Button } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import axios from 'axios';
 
 export default function RegisterForm(props) {
@@ -26,10 +26,10 @@ export default function RegisterForm(props) {
         setCredentials({ ...userCredentials, [event.target.name]: event.target.value })
     }
 
-    const checkedHandler = event => {
-        console.log(event.target.checked)
-        setCredentials({...userCredentials, [event.target.name]: event.target.checked})
-    }
+    // const checkedHandler = event => {
+    //     console.log(event.target.checked)
+    //     setCredentials({...userCredentials, [event.target.name]: event.target.checked})
+    // }
 
     return (
         <div>
@@ -38,7 +38,7 @@ export default function RegisterForm(props) {
                 <Form.Input  type="text" placeholder="Username" name="username" onChange={changeHandler} value={userCredentials.username} required />
                 <Form.Input  type="password" placeholder="Password" name="password" onChange={changeHandler} value={userCredentials.password} required />
                 <Form.Input  type="email" placeholder="Email" name="email" onChange={changeHandler} value={userCredentials.email} required />
-                <Form.Input  type="text" placeholder="If Provider, Fill in" name="providerName" onChange={changeHandler} value={userCredentials.providerName} required />
+                <Form.Input  type="text" placeholder="If Provider, Fill in" name="providerName" onChange={changeHandler} value={userCredentials.providerName}  />
                 
                 <Button  content="Register" size="large" />
             </Form>
