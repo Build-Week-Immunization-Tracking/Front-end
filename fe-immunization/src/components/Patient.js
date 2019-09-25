@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styled from 'styled-components';
 import { Card, CardTitle, CardText } from 'reactstrap';
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 
 const StyledDiv = styled.div`
@@ -12,17 +12,16 @@ const StyledCard = styled(Card)``
 
 
 
-const Patient = () => {
+export default function Patient() {
 
     const [patient, setPatient]= useState([{}]);
 
         useEffect(()=> {
-            axios
-            .get("https://immunization.herokuapp.com/patients")
+            axiosWithAuth().get("/patients")
             .then((response) => {
                 console.log(response);
                 const patientArray = response.data.results;
-                setPatient(patientArray);
+                // setPatient(patientArray);
             })
             .catch(error => {
                 console.log("No data returned", error)
@@ -32,19 +31,19 @@ const Patient = () => {
     return (
         <div className="patient-info">
         <h1>Patient Info</h1>
-        {patient.map(char => {  //change "char" when data received
+        {patient.map(patientinfo => {  
             return <StyledDiv>
                 <StyledCard>
-
-
-
-
-
+                    <CardTitle>Patient Name:</CardTitle>{patientinfo.firstName}
+                    <CardText>
+                        <p>Date of Birth: {patientinfo.birthDate}</p>
+                    </CardText>
+                    <CardText>
+                        <p>Immunization: {patientinfo.immunization}</p>
+                    </CardText>
                 </StyledCard>
-            </StyledDiv>
+             </StyledDiv>
         })}
         </div>
     )
 }
-
-export default Patient;
