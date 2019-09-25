@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./OfficePage.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from 'axios';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 // import DatePicker from "./DatePicker.js";
 // import "./DatePicker.jsx";
