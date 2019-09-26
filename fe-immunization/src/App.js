@@ -33,9 +33,13 @@ function App() {
     getImmunizations();
   }, []);
   
+
+
   console.log(immunizationsArray);
+
   return (
   <ImmunizationContext.Provider value={{immunizationsArray}}>
+    {/* <PatientContext.Provider value={{patient}}> */}
     <div className="App">
       <Route exact path="/" component={Login}/>
       <Route exact path="/register" component={RegisterForm}/>
@@ -44,6 +48,7 @@ function App() {
       <PrivateRoute exact path="/patient" component={Patient}/>
       <PrivateRoute exact path="/immunization" component={Immunization}/>
     </div>
+    {/* </PatientContext.Provider> */}
   </ImmunizationContext.Provider>
   );
 }
