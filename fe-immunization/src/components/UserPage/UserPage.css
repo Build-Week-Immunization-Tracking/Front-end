@@ -52,6 +52,7 @@ App {
     cursor: pointer;
     outline: none;
     -webkit-appearance: none;
+    justify-content: center;
   }
 
   .concent-form{
@@ -97,6 +98,7 @@ App {
     cursor: pointer;
     outline: none;
     -webkit-appearance: none;
+    justify-content: center;
   }
   
   /* .user-page{
@@ -115,3 +117,20 @@ App {
       box-sizing: border-box;
   } */
   
+.patientResult{
+  display: flex;
+    width: 700px;
+    justify-content: space-between;
+    margin:20px auto;
+    align-items: center;
+}
+
+.patientResult button{
+  margin:0;
+  background-color: steelblue;
+
+}
+
+.patientResult h2, .patientResult p{
+  margin:0;
+}
