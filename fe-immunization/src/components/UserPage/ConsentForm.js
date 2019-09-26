@@ -33,6 +33,7 @@ const ConsentForm = () => {
           <input
             type="text"
             name="providerId"
+            placeholder="Provider Id"
             value={newConsent.providerId}
             onChange={handleChange}
           />

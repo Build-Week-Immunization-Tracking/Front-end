@@ -32,6 +32,7 @@ const UserForm = (props) => {
           <input
             type="text"
             name="firstName"
+            placeholder="First Name"
             value={newPatient.firstName}
             onChange={handleChange}
           />
@@ -41,6 +42,7 @@ const UserForm = (props) => {
           <input
             type="text"
             name="lastName"
+            placeholder="Last Name"
             value={newPatient.lastName}
             onChange={handleChange}
           />
@@ -50,6 +52,7 @@ const UserForm = (props) => {
           <input
             type="text"
             name="birthDate"
+            placeholder="yyyy/dd/mm"
             value={newPatient.birthDate}
             onChange={handleChange}
           />
