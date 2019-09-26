@@ -27,7 +27,7 @@ const ConsentForm = () => {
     
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form class="concent-form" onSubmit={handleSubmit}>
         <label>
           Provider Id: 
           <input
@@ -37,9 +37,9 @@ const ConsentForm = () => {
             onChange={handleChange}
           />
         </label>
-        <button onClick={handleSubmit} >Sumbit</button>
+        <button onClick={handleSubmit} >Submit</button>
       </form>
-      <PatientList/>
+      {/* <PatientList/> */}
     </div>
   )
 }
