@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import UserForm from "./UserForm";
-import User from "./User"
+import User from "./User";
 import ConsentForm from "./ConsentForm";
 
 import {ImmunizationContext} from "../context/ImmunizationContext";
@@ -23,6 +23,21 @@ const UserPage = () => {
 
     // const [patient, setPatient] = useState([]);
   
+    // const getPatient =  () => {
+     
+    //   return axiosWithAuth()
+    //   .get('/patients')
+    //    .then(res => {
+    //      setPatient(res.data.patients);
+    //     //  console.log("im here",res.data.patients)
+    //    })
+    //    .catch(err => console.log(err)
+    //    )};
+    //    useEffect (() => {
+    //      getPatient();
+    //    }, [])
+    //   //  console.log(" Patient", patient);
+
     const getPatient =  () => {
       return axiosWithAuth()
       .get('/patients')
@@ -32,6 +47,7 @@ const UserPage = () => {
        })
        .catch(err => console.log(err)
        )};
+
        useEffect (() => {
          getPatient();
        }, [])
@@ -44,15 +60,20 @@ const UserPage = () => {
         axiosWithAuth().post('/patients', newPatient)
           .then(res => {
             console.log(res.data)
-            setPatient(res.data)
+            setPatient([...patient, newPatient])
           })
           .catch(err => console.log(err))
       }
+
     
       const deletePatient = id => {
-        axiosWithAuth().delete(`/user/${id}`)
+        axiosWithAuth().delete(`/patients/${id}`)
           .then(res => {
-            setPatient(res.data)
+            console.log("delete", res.data)
+            setPatient(patient.filter((patient) => 
+              patient.id === id ? false : true
+            ))
+            
           })
           .catch(err => console.log(err))
       }
@@ -60,13 +81,14 @@ const UserPage = () => {
       const editPatient = patient => {
         axiosWithAuth().put(`/patients/${patient.id}`, patient)
           .then(res => {
-            setPatient(res.data.patients)
+            setPatient(res.data)
+            //get and post
           })
           .catch(err => console.log(err))
           .finally(setPatientToEdit(null));
       }
     
-      const changePatientdToEdit = patient => {
+      const changePatientToEdit = patient => {
         setPatientToEdit(patient);
       }
 
@@ -76,15 +98,18 @@ const UserPage = () => {
             <UserForm addPatient={addPatient} editPatient={editPatient} patientToEdit={patientToEdit} />
             <form id={consent.id} providers={consent.providers} />
             <ConsentForm id={consent.id}/>
-            {immunizationsArray.map(item => {
+            {/* {immunizationsArray.map(item => {
               return(
                 <p key={item.id}>{item.name}</p>
               )
-            })};
+            })} */}
             {console.log("return", patient)}
             {patient.map(patient => {
                return(
-              <User key={patient.id} patient={patient} deletePatient={deletePatient} changePatientdToEdit={changePatientdToEdit}/>
+                 <div>
+              <User key={patient.id} patient={patient} deletePatient={deletePatient} changePatientToEdit={changePatientToEdit}/>
+              {/* <ConsentForm key={patient.id} id={patient.id} /> */}
+                </div>
                )
             })}
         </div>
