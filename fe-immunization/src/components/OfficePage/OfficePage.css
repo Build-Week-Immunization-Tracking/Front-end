@@ -4,12 +4,12 @@
     width: 800px;
     height:600px;
     display:flex;
-    align-content:center;
+    align-items:center;
     justify-content:center;
     position: absolute;
     /* margin-top:5%;
     margin-left:25%; */
-    left: 50%;
+    left: 30%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
@@ -48,4 +48,21 @@ input[type=checkbox] {
 
 .log-out {
     margin-top: 75px;
+}
+
+.office-page {
+    display:flex;
+    flex-direction:column;
+}
+
+.patient-info {
+    display:flex;
+    position: absolute;
+    bottom: 10px;
+    flex-direction:column;
+    right: 10%;
+    bottom: 20%;
+    /* background: #D6D3F0; */
+    color:black;
+    
 }
