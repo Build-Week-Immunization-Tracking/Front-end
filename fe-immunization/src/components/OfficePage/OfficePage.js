@@ -15,31 +15,21 @@ const UserPage = () => {
   
 
     useEffect(() => {
-        axiosWithAuth().get('/patients')
-          .then(res => {
-            setPatient(res.data);
-            // console.log(res)
-          })
-          .catch(err => console.log(err))
-      }, [])
-
         
-      const addPatient = newPatient => {
-        axiosWithAuth().post('/patients', newPatient)
-          .then(res => {
-            console.log(res.data)
-            setPatient(res.data)
-          })
-          .catch(err => console.log(err))
-      }
-    
-      const deletePatient = id => {
-        axiosWithAuth().delete(`/user/${id}`)
-          .then(res => {
-            setPatient(res.data)
-          })
-          .catch(err => console.log(err))
-      }
+
+    if (status) {
+        setPatient([...patients, status]);
+        }
+    }, [status]);
+
+    axiosWithAuth().get("/patients")
+        .then(response => {
+            console.log(response);
+            // const patientArray = response.data.results;
+            // setPatient(patientArray);
+        })
+        .catch(err => console.log(err.response))
+
     
       const editPatient = patient => {
         axiosWithAuth().put(`/user/${patient.id}`, patient)
@@ -56,18 +46,59 @@ const UserPage = () => {
 
 
     return (
-        <div>
-            <OfficeForm addPatient={addPatient} editPatient={editPatient} patientToEdit={patientToEdit} />
-            <form id={consent.id} providers={consent.providers} />
-            {/* <ConsentForm id={consent.id}/> */}
-            {/* <ImmunizationsList/> */}
-            {immunizationsArray.map(item => {
-              return(
-                <p key={item.id}>{item.name}</p>
-              )
-            })}
+
+        <>
+        <h1>Office Page</h1>
+        <div className="office-form">
+            <Form>
+                <Field id ="input"
+                    type="text"
+                    name="patientname"
+                    placeholder="Patient Name" />
+                    {touched.patientname && errors.patientname && (
+                        <p className="error">{errors.patientname}</p>
+                    )}
+                <Field id ="input"
+                    type="text"
+                    name="immunization"
+                    placeholder="Immunization" />
+                    {touched.immunization && errors.immunization && (
+                        <p className="error">{errors.immunization}</p>
+                    )}
+                <Field id ="input"
+                    type="date"
+                    name="DOI"
+                    required
+                    placeholder="DOI"
+                />
+              <label>
+                <h6>Check below if patient has given permission to share records</h6>
+                <Field id ="input"
+                    type="checkbox"
+                    name="permission"
+                    checked={values.permission}
+                />
+                <Field id ="input"
+                    component="textarea"
+                    type="text"
+                    name="notes"
+                    placeholder="Patient Notes"
+                />
+              </label>
+              <button id="officeButton">Submit</button>
+              <button className="log-out">Log Out</button>
+            </Form>
+            {patients.map(patient => (
+                <ul key={patient.id}>
+                    <li>Patient:{patients.firstName} + {patients.lastName}</li>
+                    <li>Birthdate:{patients.birthDate}</li>
+                    <li>Date:{patients.DOI}</li>
+                    <li>Notes:{patients.notes}</li>
+                </ul>
+            ))}
         </div>
-    )
+       </> 
+    );
 };
 
 
