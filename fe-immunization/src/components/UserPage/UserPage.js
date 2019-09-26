@@ -1,108 +1,76 @@
-import React, { useState, useEffect } from "react";
-import "./UserPage.css";
-import {withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import React, {useState, useEffect, useContext} from "react";
+import {axiosWithAuth} from "../utils/axiosWithAuth";
+import UserForm from "./UserForm";
+import User from "./User";
+import ConsentForm from "./ConsentForm";
+// import ImmunizationsList from "./ImmunizationList";
+import {ImmunizationContext} from "../context/ImmunizationContext";
+// import Immunization from "./Immunization";
 
 
-
-const UserForm = ({ values, errors, touched, status }) => {
-  const [child, setChild] = useState([]);
-  useEffect(() => {
-    if (status) {
-      setChild([...child, status]);
-    }
-  }, [status]);
+const UserPage = () => {
+    const [patient, setPatient] = useState([]);
+    const [patientToEdit, setPatientToEdit] = useState(null);
+    const [consent, setConsent] =useState({id: "", providers: ""});
+    const{immunizationsArray} = useContext(ImmunizationContext);
+    console.log("list", immunizationsArray)
   
-   axiosWithAuth().get("/providers")
-        .then(response => {
-            console.log(response);
-        })
-        .catch(err => console.log(err.response))
 
-    const handleChanges = event => {
-      setChild({ ...child, [event.target.name]: event.target.value });
-      console.log(child);
-    };
+    useEffect(() => {
+        axiosWithAuth().get('/patients')
+          .then(res => {
+            setPatient(res.data);
+            // console.log(res)
+          })
+          .catch(err => console.log(err))
+      }, [])
 
-  return (
-    <div>
-  <h1>Welcome to Immunization Tracking for Children</h1>
-    <div className="user-form"> 
-      <Form>
-        <h5>First Name</h5>
-        <Field type="text" name="child" placeholder="First Name" />
-        {touched.child && errors.child && (
-          <p className="error">{errors.child}</p>
-        )}
-        <h5>Last Name</h5>
-        <Field type="text" name="child" placeholder="Last Name" />
-        {touched.child && errors.child && <p className="error">{errors.child}</p>}
+        
+      const addPatient = newPatient => {
+        axiosWithAuth().post('/patients', newPatient)
+          .then(res => {
+            console.log(res.data)
+            setPatient(res.data)
+          })
+          .catch(err => console.log(err))
+      }
+    
+      const deletePatient = id => {
+        axiosWithAuth().delete(`/user/${id}`)
+          .then(res => {
+            setPatient(res.data)
+          })
+          .catch(err => console.log(err))
+      }
+    
+      const editPatient = patient => {
+        axiosWithAuth().put(`/user/${patient.id}`, patient)
+          .then(res => {
+            setPatient(res.data)
+          })
+          .catch(err => console.log(err))
+          .finally(setPatientToEdit(null));
+      }
+    
+      const changePatientdToEdit = patient => {
+        setPatientToEdit(patient);
+      }
 
 
-        <h5>Date Of Birth</h5>
-        <Field
-          type="date"
-          name="DOI"
-          required
-          placeholder="DOI"
-          />
-
-        <label>
-          <h5>Check below for Processing</h5>
-          <Field
-            type="checkbox"
-            name="immunization"
-            checked={values.immunization}
-          />
-          <Field
-            component="textarea"
-            type="text"
-            name="notes"
-            placeholder="Notes"
-            
-          />
-        </label>
-        <button>Add Patient!</button>
-      </Form>
-      {child.map(child => (
-        <ul key={child.id}>
-          <li>First Name:{child.firstname}</li>
-          <li>Last Name: {child.lastname}</li>
-          <li>Date Of Birth: {child.dateOfBirth}</li>
-        </ul>
-      ))}
-    </div>
-    </div>
-  );
+    return (
+        <div>
+            <UserForm addPatient={addPatient} editPatient={editPatient} patientToEdit={patientToEdit} />
+            <form id={consent.id} providers={consent.providers} />
+            <ConsentForm id={consent.id}/>
+            {/* <ImmunizationsList/> */}
+            {immunizationsArray.map(item => {
+              return(
+                <p key={item.id}>{item.name}</p>
+              )
+            })}
+        </div>
+    )
 };
-const FormikUserForm = withFormik({
-  mapPropsToValues({ firstname, lastname, dateOfBirth,immunization,notes}) {
-    return {
-      firstname: firstname || "",
-      lastname: lastname || "",
-      dateOfBirth: dateOfBirth || "",
-      immunization:immunization || false,
-      notes:notes ||""
-      
-    };
-  },
-  validationSchema: Yup.object().shape({
-    firstname: Yup.string().required("You must put a child"),
-    lastname: Yup.string().required("You must put a child"),
-    dateOfBirth: Yup.string().required()
-  }),
-  //You can use this to see the values
-  handleSubmit(values, { setStatus }) {
-    axiosWithAuth().post("/patients", values)
-      .then(res => {
-        setStatus(res.data);
-      })
-      .catch(err => console.log(err.res));
-  }
-})(UserForm);
-console.log("This is the HOC", FormikUserForm);
-export default FormikUserForm;
 
 
-
+export default UserPage;
