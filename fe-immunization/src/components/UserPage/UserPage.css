@@ -119,7 +119,7 @@ App {
   
 .patientResult{
   display: flex;
-    width: 700px;
+    width: 800px;
     justify-content: space-between;
     margin:20px auto;
     align-items: center;
