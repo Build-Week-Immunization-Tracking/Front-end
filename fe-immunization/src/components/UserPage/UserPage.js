@@ -31,13 +31,13 @@ const UserForm = ({ values, errors, touched, status }) => {
     <div className="user-form"> 
       <Form>
         <h5>First Name</h5>
-        <Field type="text" name="child" placeholder="Child Name" />
+        <Field type="text" name="child" placeholder="First Name" />
         {touched.child && errors.child && (
           <p className="error">{errors.child}</p>
         )}
         <h5>Last Name</h5>
-        <Field type="text" name="immunization" placeholder="Immunization" />
-        {touched.immunization && errors.immunization && <p className="error">{errors.immunization}</p>}
+        <Field type="text" name="child" placeholder="Last Name" />
+        {touched.child && errors.child && <p className="error">{errors.child}</p>}
 
 
         <h5>Date Of Birth</h5>
@@ -77,17 +77,20 @@ const UserForm = ({ values, errors, touched, status }) => {
   );
 };
 const FormikUserForm = withFormik({
-  mapPropsToValues({ name, immunization, dateOfBirth,}) {
+  mapPropsToValues({ firstname, lastname, dateOfBirth,immunization,notes}) {
     return {
-      name: name || "",
-      immunization: immunization || "",
-      dateOfBirth: dateOfBirth || ""
+      firstname: firstname || "",
+      lastname: lastname || "",
+      dateOfBirth: dateOfBirth || "",
+      immunization:immunization || false,
+      notes:notes ||""
       
     };
   },
   validationSchema: Yup.object().shape({
-    species: Yup.string().required("You must put a child"),
-    size: Yup.string().required()
+    firstname: Yup.string().required("You must put a child"),
+    lastname: Yup.string().required("You must put a child"),
+    dateOfBirth: Yup.string().required()
   }),
   //You can use this to see the values
   handleSubmit(values, { setStatus }) {
