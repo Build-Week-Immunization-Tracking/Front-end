@@ -119,18 +119,19 @@ App {
   
 .patientResult{
   display: flex;
-    width: 800px;
+    width: 850px;
     justify-content: space-between;
     margin:20px auto;
     align-items: center;
+    background-color:#D6D3F0;
 }
 
 .patientResult button{
-  margin:0;
+  margin:auto;
   background-color: steelblue;
 
 }
 
 .patientResult h2, .patientResult p{
-  margin:0;
+  margin:auto;
 }
