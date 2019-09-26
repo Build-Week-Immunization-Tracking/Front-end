@@ -20,6 +20,7 @@ import {axiosWithAuth} from "./utils/axiosWithAuth";
                 console.log(res)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.id)
+                
                 if (res.data.isProvider) {
                     props.history.push("/officepage")
                 } else {

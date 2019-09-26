@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import {axiosWithAuth} from "../utils/axiosWithAuth";
+import PatientList from "./PatientsList";
 
-const ConsentForm = (props) => {
+const ConsentForm = () => {
   
   const [newConsent, setNewConsent] = useState({ providerId: ""})
 
-    
   const handleChange = e => {
     setNewConsent({ ...newConsent, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log("this is the id",id)
     setNewConsent({ providerId: ""});
-
-        axiosWithAuth().post("/patients/2/consent", newConsent)
+        axiosWithAuth().post(`/patients/${id}/consent`, newConsent)
         .then(res => {
           console.log(res)
           setNewConsent(res.data)
@@ -22,19 +22,9 @@ const ConsentForm = (props) => {
         .catch(err => console.log(err))
       }
 
+      const id = localStorage.getItem("id")
 
-//   const patientConsent = patient => {
-//     axiosWithAuth().get(`/patients/${patient.id}/consent`)
-//     .then(res => {
-//       console.log(res.data)
-//     })
-//     .catch(err => console.log(err))
-//   }
-
-//   useEffect(() => {
-//       if (patientToEdit) setNewConsent({...patientToEdit})
-//   }, [patientToEdit])
-
+    
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -49,6 +39,7 @@ const ConsentForm = (props) => {
         </label>
         <button onClick={handleSubmit} >Sumbit</button>
       </form>
+      <PatientList/>
     </div>
   )
 }
