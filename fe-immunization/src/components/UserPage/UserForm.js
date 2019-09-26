@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './UserPage.css'
 
 const UserForm = (props) => {
   const { addPatient, editPatient, patientToEdit } = props;
@@ -24,7 +25,8 @@ const UserForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <h2>User Page</h2>
+      <form className = "user-form" onSubmit={handleSubmit}>
         <label>
           First Name: 
           <input
@@ -52,7 +54,7 @@ const UserForm = (props) => {
             onChange={handleChange}
           />
         </label>
-        <button>{patientToEdit ? "edit patient" : "add patient"}</button>
+        <button>{patientToEdit ? "edit patient" : "Add Patient"}</button>
       </form>
     </div>
   )
