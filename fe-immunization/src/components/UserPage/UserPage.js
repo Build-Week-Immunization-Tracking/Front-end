@@ -1,13 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import UserForm from "./UserForm";
 import User from "./User";
 import ConsentForm from "./ConsentForm";
+// import ImmunizationsList from "./ImmunizationList";
+import {ImmunizationContext} from "../context/ImmunizationContext";
+// import Immunization from "./Immunization";
+
 
 const UserPage = () => {
     const [patient, setPatient] = useState([]);
     const [patientToEdit, setPatientToEdit] = useState(null);
     const [consent, setConsent] =useState({id: "", providers: ""});
+    const{immunizationsArray} = useContext(ImmunizationContext);
+    console.log("list", immunizationsArray)
+  
 
     useEffect(() => {
         axiosWithAuth().get('/patients')
@@ -54,13 +61,13 @@ const UserPage = () => {
         <div>
             <UserForm addPatient={addPatient} editPatient={editPatient} patientToEdit={patientToEdit} />
             <form id={consent.id} providers={consent.providers} />
-            <ConsentForm />
-            {/* {patient.map(patient => {
-                return (
-                        <User key={patient.id} patient={patient} deletePatient={deletePatient} changePatientdToEdit={changePatientdToEdit} />
-                )
-            })} */}
-
+            <ConsentForm id={consent.id}/>
+            {/* <ImmunizationsList/> */}
+            {immunizationsArray.map(item => {
+              return(
+                <p key={item.id}>{item.name}</p>
+              )
+            })}
         </div>
     )
 };
