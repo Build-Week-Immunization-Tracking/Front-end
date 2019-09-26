@@ -3,13 +3,22 @@ import "./OfficePage.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-// import DatePicker from "./DatePicker.js";
-// import "./DatePicker.jsx";
+import User from "../UserPage/User";
+import styled from 'styled-components';
+import { Card, CardTitle, CardText } from 'reactstrap';
+
+const StyledDiv = styled.div`
+`
+
+const StyledCard = styled(Card)`
+    opacity: .7;
+    `
+
 const OfficePage = ({ values, errors, touched, status }) => {
-    const [patients, setPatient] = useState([])
+    const [patient, setPatient] = useState([])
     useEffect(() => {
     if (status) {
-        setPatient([...patients, status]);
+        setPatient([...patient, status]);
         }
     }, [status]);
     axiosWithAuth().get("/patients")
@@ -19,9 +28,22 @@ const OfficePage = ({ values, errors, touched, status }) => {
             // setPatient(patientArray);
         })
         .catch(err => console.log(err.response))
-    
+        
+        const getPatient =  () => {
+             return axiosWithAuth()
+             .get('/patients')
+              .then(res => {
+                setPatient(res.data.patients);
+                console.log("im here",res.data.patients)
+              })
+              .catch(err => console.log(err)
+              )};
+              useEffect (() => {
+                getPatient();
+              }, [])
+              console.log(" Patient", patient);
         return (
-            <>
+            <div className= "office-page">
             <h1>Office Page</h1>
             <div className="office-form">
                 <Form>
@@ -60,18 +82,31 @@ const OfficePage = ({ values, errors, touched, status }) => {
                     />
                   </label>
                   <button id="officeButton">Submit</button>
-                  <button className="log-out">Log Out</button>
                 </Form>
-                {patients.map(patient => (
-                    <ul key={patient.id}>
-                    <li>Patient:{patients.firstName} + {patients.lastName}</li>
-                    <li>Birthdate:{patients.birthDate}</li>
-                    <li>Date:{patients.DOI}</li>
-                    <li>Notes:{patients.notes}</li>
-                </ul>
-            ))}
         </div>
-        </>
+        <div className="patient-info">
+                     <h1>Patient Info</h1>
+                    <StyledDiv>
+                        <StyledCard>
+                            <CardTitle>Patient Name:{patient.firstName}</CardTitle>
+                                <CardText>
+                                Date of Birth: {patient.birthDate}
+                                </CardText>
+                                <CardText>
+                                Immunization: {patient.immunization}
+                                </CardText>
+                                <CardText>
+                                Patient Notes:
+                                </CardText>
+                        </StyledCard>
+                    </StyledDiv>
+        {patient.map(patient => {
+                  return(
+                    <User key={patient.id} patient={patient} />
+                  )
+               })}
+    </div>
+      </div>  
         );
 };
 const FormikOfficePage = withFormik({
