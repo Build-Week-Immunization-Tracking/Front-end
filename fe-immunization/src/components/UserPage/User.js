@@ -5,6 +5,7 @@ const User = props => {
 
   return (
     <div>
+      <p>{patient.id}</p>
       <h2>{patient.firstName}</h2>
       <p>{patient.lastName}</p>
       <p>{patient.birthDate}</p>

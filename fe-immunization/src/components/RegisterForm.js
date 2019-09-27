@@ -32,15 +32,19 @@ export default function RegisterForm(props) {
     // }
 
     return (
-        <div>
+        <div className="container App">
             <Form onSubmit={submitHandler}>
-                <h1>Register</h1>
-                <Form.Input  type="text" placeholder="Username" name="username" onChange={changeHandler} value={userCredentials.username} required />
-                <Form.Input  type="password" placeholder="Password" name="password" onChange={changeHandler} value={userCredentials.password} required />
-                <Form.Input  type="email" placeholder="Email" name="email" onChange={changeHandler} value={userCredentials.email} required />
-                <Form.Input  type="text" placeholder="If Provider, Fill in" name="providerName" onChange={changeHandler} value={userCredentials.providerName}  />
-                
-                <Button  content="Register" size="large" />
+                <div className="card-header">
+                    <h1>Register</h1>
+                </div>
+                <div>
+                    <Form.Input className="" type="text" placeholder="Username" name="username" onChange={changeHandler} value={userCredentials.username} required />
+                    <Form.Input  type="password" placeholder="Password" name="password" onChange={changeHandler} value={userCredentials.password} required />
+                    <Form.Input  type="email" placeholder="Email" name="email" onChange={changeHandler} value={userCredentials.email} required />
+                    <Form.Input  type="text" placeholder="If Provider, Fill in" name="providerName" onChange={changeHandler} value={userCredentials.providerName}  />
+                    
+                    <Button className="login_btn" content="Register" size="large" />
+                </div>
             </Form>
         </div>
     )
