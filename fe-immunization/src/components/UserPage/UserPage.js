@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect} from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import UserForm from "./UserForm";
 import User from "./User";
 import ConsentForm from "./ConsentForm";
 
 
-import {ImmunizationContext} from "../context/ImmunizationContext";
+// import {ImmunizationContext} from "../context/ImmunizationContext";
 // import {PatientContext} from "../context/PatientContext";
 
 
@@ -17,8 +17,8 @@ const UserPage = () => {
     // const{patient} = useContext(PatientContext)
 
     const [consent, setConsent] =useState({id: "", providers: ""});
-    const{immunizationsArray} = useContext(ImmunizationContext);
-    console.log("list", immunizationsArray)
+    // const{immunizationsArray} = useContext(ImmunizationContext);
+    // console.log("list", immunizationsArray)
   
 
 
@@ -147,9 +147,9 @@ const UserPage = () => {
       />
       <form id={consent.id} providers={consent.providers} />
       <ConsentForm id={consent.id}  />
-      {immunizationsArray.map(item => {
+      {/* {immunizationsArray.map(item => {
         return <p key={item.id}>{item.name}</p>;
-      })}
+      })} */}
       {console.log("return", patient)}
       <div className="allCards">
 
