@@ -5,8 +5,9 @@ const User = props => {
   const { patient, deletePatient, changePatientToEdit } = props;
 
   return (
-    <div className="patientResult" >
-      <p> First Name: {patient.firstName}</p>
+    <div className="patientResult">
+      <p>ID:{patient.id}</p>
+      <h2>First Name:{patient.firstName}</h2>
       <p>Last Name:{patient.lastName}</p>
       <p>DOB:{patient.birthDate}</p>
       <button onClick={() => changePatientToEdit(patient)}>Edit</button>

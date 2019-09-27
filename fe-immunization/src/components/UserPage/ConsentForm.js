@@ -1,35 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import {axiosWithAuth} from "../utils/axiosWithAuth";
-import PatientList from "./PatientsList";
+import React, { useState, useEffect } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const ConsentForm = () => {
-  
-  const [newConsent, setNewConsent] = useState({ providerId: ""})
+
+
+const ConsentForm = props => {
+  const { patient } = props;
+  const id = localStorage.getItem("patient.id");
+  const [newConsent, setNewConsent] = useState({
+    patient: "",
+    providerId: ""
+  });
+
+
 
   const handleChange = e => {
-    setNewConsent({ ...newConsent, [e.target.name]: e.target.value })
-  }
+    setNewConsent({ ...newConsent, [e.target.name]: e.target.value });
+  };
+
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("this is the id",id)
-    setNewConsent({ providerId: ""});
-        axiosWithAuth().post(`/patients/${id}/consent`, newConsent)
-        .then(res => {
-          console.log(res)
-          setNewConsent(res.data)
-        })
-        .catch(err => console.log(err))
-      }
+    console.log("this is the id", id);
+    setNewConsent({ providerId: "" });
+    axiosWithAuth()
+      .post(`/patients/${newConsent.patient}/consent`, newConsent)
+      .then(res => {
+        console.log(res);
+        setNewConsent(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
-      const id = localStorage.getItem("id")
 
-    
   return (
     <div>
-      <form class="concent-form" onSubmit={handleSubmit}>
+      <h1>{newConsent.patient}</h1>
+      <form className="concent-form" onSubmit={handleSubmit}>
+
         <label>
-          Provider Id: 
+          Provider Id:
           <input
             type="text"
             name="providerId"
@@ -38,11 +47,21 @@ const ConsentForm = () => {
             onChange={handleChange}
           />
         </label>
-        <button onClick={handleSubmit} >Submit</button>
+        <label>
+          Patient Id
+          <input
+            type="text"
+            name="patient"
+            value={newConsent.patient}
+            onChange={handleChange}
+          />
+        </label>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
       {/* <PatientList/> */}
-    </div>
-  )
-}
+      
 
+    </div>
+  );
+};
 export default ConsentForm;
