@@ -135,7 +135,7 @@ App {
   margin:auto;
 }
 
-.ui {
+.ui.cards {
   display:flex;
   justify-content:center;
   height:70%;
