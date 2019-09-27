@@ -13,7 +13,7 @@ const User = props => {
           <p>First Name:{patient.firstName}</p>
           <p>Last Name:{patient.lastName}</p>
           <p>DOB:{patient.birthDate}</p>
-        </Card.Content>
+          </Card.Content>
         <Card.Content extra>
           <div>
             <Button basic color="green" onClick={() => changePatientToEdit(patient)}>Edit</Button>
