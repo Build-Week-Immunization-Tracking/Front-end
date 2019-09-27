@@ -37,7 +37,7 @@ export default function RegisterForm(props) {
                 <div className="card-header">
                     <h1>Register</h1>
                 </div>
-                <div>
+                <div className="register-field">
                     <Form.Input className="" type="text" placeholder="Username" name="username" onChange={changeHandler} value={userCredentials.username} required />
                     <Form.Input  type="password" placeholder="Password" name="password" onChange={changeHandler} value={userCredentials.password} required />
                     <Form.Input  type="email" placeholder="Email" name="email" onChange={changeHandler} value={userCredentials.email} required />
