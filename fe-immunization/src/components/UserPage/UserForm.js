@@ -25,7 +25,7 @@ const UserForm = (props) => {
 
   return (
     <div>
-      <h2>User Page</h2>
+      <h1 className="userH1" >User Page</h1>
       <form className = "user-form" onSubmit={handleSubmit}>
         <label>
           First Name: 

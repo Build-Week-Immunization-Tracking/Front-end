@@ -36,7 +36,7 @@ import {axiosWithAuth} from "./utils/axiosWithAuth";
             <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
-                        <h1>Immunization Tracker </h1>
+                        <h1 className="login-h1">Immunization Tracker </h1>
                     </div>
                     <div className="card-body">
                         <Form onSubmit={handleSubmit}>

@@ -52,7 +52,7 @@ export default function RegisterForm(props) {
             <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
-                        <h1>Register </h1>
+                        <h1 className="register-h1">Register </h1>
                     </div>
                     <div className="card-body">
                         <Form onSubmit={submitHandler}>
@@ -84,7 +84,7 @@ export default function RegisterForm(props) {
                             </div>
                             <div className="input-group form-group">   
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"><i className="fas fa-user"></i></span>
+                                    <span className="input-group-text"><i className="fas fa-envelope"></i></span>
                                 </div>
                                 <input
                                 type="email"
@@ -97,15 +97,15 @@ export default function RegisterForm(props) {
                             </div>
                             <div className="input-group form-group">   
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"><i className="fas fa-user"></i></span>
+                                    <span className="input-group-text"><i className="fas fa-address-card"></i></span>
                                 </div>
                                 <input
                                 type="text"
                                 name="providerName"
                                 value={userCredentials.providerName}
                                 onChange={changeHandler}
-                                placeholder="If Provider, Fill in"
-                                required
+                                placeholder="(Office Only)"
+                                
                                 />
                             </div>
                                     {/* <button type="submit">Log in</button> */}

@@ -1,6 +1,19 @@
 import React from 'react';
 import './UserPage.css'
 import {Button, Card} from "semantic-ui-react";
+import styled from "styled-components";
+
+
+const Title = styled.h2`
+color:lightgreen;
+text-shadow: 1px 1px 1px #000000;`
+
+const P = styled.p`
+color:lightblue;
+text-shadow:1px 1px 2px #000000`
+
+
+
 
 const User = props => {
   const { patient, deletePatient, changePatientToEdit } = props;
@@ -9,15 +22,17 @@ const User = props => {
     <Card.Group >
       <Card>
         <Card.Content>
-          <p>ID:{patient.id}</p>
-          <p>First Name:{patient.firstName}</p>
-          <p>Last Name:{patient.lastName}</p>
-          <p>DOB:{patient.birthDate}</p>
+          <Title>Patient Card ID</Title>
+          <P>ID:{patient.id}</P>
+          <P>First Name:{patient.firstName}</P>
+          <P>Last Name:{patient.lastName}</P>
+          <P>DOB:{patient.birthDate}</P>
           </Card.Content>
         <Card.Content extra>
           <div>
-            <Button basic color="green" onClick={() => changePatientToEdit(patient)}>Edit</Button>
-            <Button basic color="red" onClick={() => deletePatient(patient.id)}>Delete</Button>
+            <Button className="btn float-right userDelete_btn" onClick={() => deletePatient(patient.id)}>Delete</Button>
+            <Button className="btn float-right userEdit_btn" onClick={() => changePatientToEdit(patient)}>Edit</Button>
+            
           </div>
         </Card.Content>
       </Card>
