@@ -5,8 +5,8 @@ App {
     margin:20px;
   }
   
-  .user-form {
-    width: 550px;
+  .user-form{
+    width: 700px;
     margin: 20px auto;
     padding: 32px;
     font-weight: bold;
@@ -15,7 +15,6 @@ App {
 
     /*display 2*/
     display:flex;
-    width:700px;
     justify-content: space-around;
 
     
@@ -56,7 +55,7 @@ App {
   }
 
   .concent-form{
-    width: 550px;
+    width: 700px;
     margin: 20px auto;
     padding: 32px;
     font-weight: bold;
@@ -65,7 +64,7 @@ App {
 
     /*display 2*/
     display:flex;
-    width:700px;
+    
     justify-content: space-around;
 
   }
@@ -76,7 +75,7 @@ App {
     margin-top: 32px;
     padding: 0.5rem;
     font-size: 16px;
-    width: 400px;
+    width: 200px;
     display: block;
     color: #4d2d52;
     border: 2px solid rgba(77, 45, 82, 0.8);

@@ -79,12 +79,13 @@ const UserPage = () => {
           .catch(err => console.log(err))
       }
     
-      const editPatient = patient => {
-        axiosWithAuth().put(`/patients/${patient.id}`, patient)
+      const editPatient = (p) => {
+        axiosWithAuth().put(`/patients/${p.id}`, p)
           .then(res => {
             // setPatient()
-            setPatient(patientToEdit.map(patient => (patient.id === res.data.id ? res.data : patient)));
+            setPatient(patient.map(patient => (patient.id === res.data.id ? res.data : patient)));
             // get and post
+            getPatient();
           })
           .catch(err => console.log(err))
           .finally(setPatientToEdit(null));
@@ -160,7 +161,7 @@ const UserPage = () => {
           />
         );
       })}
-      {patient.map(patient => {
+      {/* {patient.map(patient => {
         return (
           <ConsentForm
             key={patient.id}
@@ -169,7 +170,7 @@ const UserPage = () => {
             changePatientToEdit={changePatientToEdit}
           />
         );
-      })}
+      })} */}
     </div>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 
 const ConsentForm = props => {
-  const { patient } = props;
+  // const { patient } = props;
   const id = localStorage.getItem("patient.id");
   const [newConsent, setNewConsent] = useState({
     patient: "",
@@ -48,12 +48,13 @@ const ConsentForm = props => {
           />
         </label>
         <label>
-          Patient Id
+          Patient Id:
           <input
             type="text"
             name="patient"
             value={newConsent.patient}
             onChange={handleChange}
+            placeholder="Patient Id"
           />
         </label>
         <button onClick={handleSubmit}>Submit</button>
