@@ -10,7 +10,7 @@ App {
     margin: 20px auto;
     padding: 32px;
     font-weight: bold;
-    background-color:#D6D3F0;
+    background-color: rgba(0,0,0,0.5) !important;
     box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
 
     /*display 2*/
@@ -40,14 +40,15 @@ App {
 
     margin: 67px 0 0 5px ;
     width: 150px;
-    height:44px;
+    height:40px;
     padding: auto 2px;
-    border-style: none;
-    background-color: steelblue;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #FFC312;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 22px;
-    font-weight: 500;
-    color: #fff;
+    font-weight: 400;
+    color: black;
     cursor: pointer;
     outline: none;
     -webkit-appearance: none;
@@ -59,7 +60,7 @@ App {
     margin: 20px auto;
     padding: 32px;
     font-weight: bold;
-    background-color:#D6D3F0;
+    background-color:rgba(0,0,0,0.5) !important;;
     box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
 
     /*display 2*/
@@ -77,7 +78,7 @@ App {
     font-size: 16px;
     width: 200px;
     display: block;
-    color: #4d2d52;
+    color: black;
     border: 2px solid rgba(77, 45, 82, 0.8);
   }
 
@@ -85,15 +86,16 @@ App {
     /* max-width: 200px; */
 
     margin: 67px 0 0 5px ;
-    width: 90px;
-    height:44px;
+    width: 100px;
+    height:40px;
     padding: auto 2px;
-    border-style: none;
-    background-color: steelblue;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #FFC312;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 22px;
-    font-weight: 500;
-    color: #fff;
+    font-weight: 400;
+    color: black;
     cursor: pointer;
     outline: none;
     -webkit-appearance: none;
