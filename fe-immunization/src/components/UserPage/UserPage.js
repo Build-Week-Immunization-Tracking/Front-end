@@ -151,16 +151,21 @@ const UserPage = () => {
         return <p key={item.id}>{item.name}</p>;
       })}
       {console.log("return", patient)}
-      {patient.map(patient => {
-        return (
-          <User
-            key={patient.id}
-            patient={patient}
-            deletePatient={deletePatient}
-            changePatientToEdit={changePatientToEdit}
-          />
-        );
-      })}
+      <div className="allCards">
+
+        {patient.map(patient => {
+          return (
+            
+            <User
+              key={patient.id}
+              patient={patient}
+              deletePatient={deletePatient}
+              changePatientToEdit={changePatientToEdit}
+            />
+            
+          );
+        })}
+      </div>
       {/* {patient.map(patient => {
         return (
           <ConsentForm

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./OfficePage.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -6,16 +6,34 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import User from "../UserPage/User";
 import styled from 'styled-components';
 import { Card, CardTitle, CardText } from 'reactstrap';
+import {Link} from "react-router-dom";
 
-const StyledDiv = styled.div`
-`
+import {ImmunizationContext} from "../context/ImmunizationContext";
 
-const StyledCard = styled(Card)`
-    opacity: .7;
-    `
+
+// const div = styled.div`
+// `
+
+// const Card = styled(Card)`
+//     opacity: ;
+//     `
+
+const Title = styled.h2`
+color:lightgreen;
+text-shadow: 1px 1px 1px #000000;`
+
+const P = styled.p`
+color:lightblue;
+text-shadow:1px 1px 2px #000000`
+
 
 const OfficePage = ({ values, errors, touched, status }) => {
     const [patient, setPatient] = useState([])
+
+    const{immunizationsArray} = useContext(ImmunizationContext);
+    console.log("list", immunizationsArray)
+
+
     useEffect(() => {
     if (status) {
         setPatient([...patient, status]);
@@ -42,9 +60,12 @@ const OfficePage = ({ values, errors, touched, status }) => {
                 getPatient();
               }, [])
               console.log(" Patient", patient);
+
+
+
         return (
-            <div className= "office-page">
-            <h1>Office Page</h1>
+            <div id= "office-page">
+            <h1 className="userH1">Office Page</h1>
             <div className="office-form">
                 <Form>
                     <Field id ="input"
@@ -84,28 +105,36 @@ const OfficePage = ({ values, errors, touched, status }) => {
                   <button id="officeButton">Submit</button>
                 </Form>
         </div>
-        <div className="patient-info">
-                     <h1>Patient Info</h1>
-                    <StyledDiv>
-                        <StyledCard>
-                            <CardTitle>Patient Name:{patient.firstName}</CardTitle>
-                                <CardText>
-                                Date of Birth: {patient.birthDate}
-                                </CardText>
-                                <CardText>
-                                Immunization: {patient.immunization}
-                                </CardText>
-                                <CardText>
-                                Patient Notes:
-                                </CardText>
-                        </StyledCard>
-                    </StyledDiv>
-        {patient.map(patient => {
-                  return(
-                    <User key={patient.id} patient={patient} />
-                  )
-               })}
-    </div>
+        <Link className="patient-link" to={`/patient/${patient.id}`}>
+            <div className="patient-info">
+                        {/* <h1>Patient Info</h1> */}
+                        <div className="information">
+                            <Card>
+                                <Title>Patient Name:{patient.firstName}</Title>
+                                    <P>
+                                    Date of Birth: {patient.birthDate}
+                                    </P>
+                                    <P>
+                                    Immunization: {patient.immunization}
+                                    </P>
+                                    <P>
+                                    Patient Notes:
+                                    </P>
+                            </Card>
+                        </div>
+            {patient.map(patient => {
+                    return(
+                        <User key={patient.id} patient={patient} />
+                    )
+                })}
+        </div>
+    </Link>
+        <footer className="immunizations">
+            <h1>Vaccines:</h1>
+            {immunizationsArray.map(item => {
+                return <p key={item.id}>{item.name}</p>;
+            })}
+        </footer>
       </div>  
         );
 };
