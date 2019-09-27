@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './UserPage.css'
 
 const UserForm = (props) => {
   const { addPatient, editPatient, patientToEdit } = props;
@@ -24,12 +25,14 @@ const UserForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <h2>User Page</h2>
+      <form className = "user-form" onSubmit={handleSubmit}>
         <label>
           First Name: 
           <input
             type="text"
             name="firstName"
+            placeholder="First Name"
             value={newPatient.firstName}
             onChange={handleChange}
           />
@@ -39,6 +42,7 @@ const UserForm = (props) => {
           <input
             type="text"
             name="lastName"
+            placeholder="Last Name"
             value={newPatient.lastName}
             onChange={handleChange}
           />
@@ -48,11 +52,12 @@ const UserForm = (props) => {
           <input
             type="text"
             name="birthDate"
+            placeholder="yyyy/dd/mm"
             value={newPatient.birthDate}
             onChange={handleChange}
           />
         </label>
-        <button>{patientToEdit ? "edit patient" : "add patient"}</button>
+        <button>{patientToEdit ? "edit patient" : "Add Patient"}</button>
       </form>
     </div>
   )

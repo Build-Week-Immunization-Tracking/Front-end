@@ -1,7 +1,8 @@
-// import React, { useState, useEffect } from "react";
-// import styled from 'styled-components';
-// import { Card, CardTitle, CardText } from 'reactstrap';
-// import { axiosWithAuth } from "./utils/axiosWithAuth";
+import React, { useState, useEffect } from "react";
+import styled from 'styled-components';
+import { Card, CardTitle, CardText } from 'reactstrap';
+import { axiosWithAuth } from "./utils/axiosWithAuth";
+import User from "./UserPage/User";
 
 
 // const StyledDiv = styled.div`
@@ -12,9 +13,9 @@
 
 
 
-// export default function Patient() {
+export default function Patient() {
 
-//     const [patient, setPatient]= useState([{}]);
+//     const [patient, setPatient]= useState([]);
 
 //         useEffect(()=> {
 //             axiosWithAuth().get("/patients")
@@ -47,3 +48,44 @@
 //         </div>
 //     )
 // }
+
+// const Patient = () => {
+//     const [patient, setPatient] = useState([]);
+//     const getPatient =  () => {
+//          return axiosWithAuth()
+//          .get('/patients')
+//           .then(res => {
+//             setPatient(res.data.patients);
+//             console.log("im here",res.data.patients)
+//           })
+//           .catch(err => console.log(err)
+//           )};
+//           useEffect (() => {
+//             getPatient();
+//           }, [])
+//           console.log(" Patient", patient);
+    return(
+//         <div className="patient-info">
+                     <h1>Patient Info</h1>
+//                     <StyledDiv>
+//                         <StyledCard>
+                        
+//                              <CardTitle>Patient Name:{patient.firstName}</CardTitle>
+//                                 <CardText>
+//                                 Date of Birth: {patient.birthDate}
+//                                 </CardText>
+//                                 <CardText>
+//                                 Immunization: {patient.immunization}
+//                                 </CardText>
+//                         </StyledCard>
+//                     </StyledDiv>
+//         {patient.map(patient => {
+//                   return(
+//                     <User key={patient.id} patient={patient} />
+                  )
+//                })}
+//     </div>
+//     )
+    }
+
+    // export default Patient;
